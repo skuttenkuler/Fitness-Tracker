@@ -12,6 +12,7 @@ module.exports = (app) => {
             } else {
                 res.json(workouts)
             }
-        })
-    })
+        });
+    });
+    
 }
