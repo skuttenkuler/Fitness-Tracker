@@ -19,6 +19,7 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fittrack", {useNewUrlParser: true});
 
+require('./seeders/seed')
 
 //use routes
 require('./routes/api-routes')(app)

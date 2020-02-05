@@ -8,10 +8,11 @@ const WorkoutSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    excercises: {
-        type: Schema.Types.ObjectId,
-        ref: "Workout"
-    }
+    excercises: [],
+    totalDuration: {
+        type: Number,
+        default: 0
+    } 
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
