@@ -1,11 +1,10 @@
 //db
 const db = require('../models')
-//display last workout requires "/api/workouts"
 module.exports = (app) => {
 
     //////Workout Routes//////
     //get all
-    app.get('/api/workouts', (req, res) => {
+    app.get("/api/workouts", (req, res) => {
         db.Workout.find({}, (err, workouts) => {
             if(err){
                 console.log(err);
@@ -14,5 +13,20 @@ module.exports = (app) => {
             }
         });
     });
-    
+    //add excerise, set id, push to model, set true
+    app.put("/api/workouts/:workout", ({ params, body }, res) => {
+        db.Workout.findOneAndUpdate({ _id: params.id},
+                                    {$push: {excercises:body }},
+                                    { upsert: true, useFindandModify:false},
+                                    addWorkout => {
+                                        res.json(addWorkout);
+                                    })
+    });
+    //create new workout
+    app.post('/api/workouts', (req,res) => {
+        db.Workout.create({}).then(newWorkout => {
+            res.json(newWorkout);
+        });
+    });
+
 }
