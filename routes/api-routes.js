@@ -18,8 +18,8 @@ module.exports = (app) => {
         db.Workout.findOneAndUpdate({ _id: params.id},
                                     {$push: {excercises:body }},
                                     { upsert: true, useFindandModify:false},
-                                    addWorkout => {
-                                        res.json(addWorkout);
+                                    updatedWorkout => {
+                                        res.json(updatedWorkout);
                                     })
     });
     //create new workout
